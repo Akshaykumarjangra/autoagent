@@ -6,7 +6,8 @@
 FROM node:20-alpine AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json* ./
-RUN npm ci --ignore-scripts
+# Repo uses npm workspaces (no per-package lockfile), so use npm install
+RUN npm install --ignore-scripts --no-audit --no-fund
 COPY frontend/ ./
 RUN npm run build
 
@@ -20,7 +21,7 @@ RUN apk add --no-cache python3 make g++
 # Copy backend
 COPY backend/package.json backend/package-lock.json* ./backend/
 WORKDIR /app/backend
-RUN npm ci --omit=dev
+RUN npm install --omit=dev --no-audit --no-fund
 
 COPY backend/ ./
 
