@@ -65,8 +65,10 @@ startAutoposter();
 const app = express();
 
 // Security
+// CSP disabled — frontend loads Tailwind, Google Fonts, and Razorpay from CDNs.
+// Re-enable later with a proper CSP allow-list once we self-host or pin sources.
 app.use(helmet({
-  contentSecurityPolicy: NODE_ENV === 'production' ? undefined : false,
+  contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false,
 }));
 
