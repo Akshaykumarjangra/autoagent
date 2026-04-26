@@ -305,10 +305,11 @@ if (NODE_ENV === 'production') {
   const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
   if (fs.existsSync(frontendDist)) {
     app.use(express.static(frontendDist));
-    app.get('*', (req, res) => {
-      if (!req.path.startsWith('/api') && !req.path.startsWith('/ws-')) {
-        res.sendFile(path.join(frontendDist, 'index.html'));
-      }
+    // SPA catch-all — Express 5 deprecated bare '*'; use middleware for any non-API path
+    app.use((req, res, next) => {
+      if (req.method !== 'GET') return next();
+      if (req.path.startsWith('/api') || req.path.startsWith('/ws-')) return next();
+      res.sendFile(path.join(frontendDist, 'index.html'));
     });
   }
 }
