@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://127.0.0.1:5000/api/health)",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyAxs7SjKpUXm9jruor-LS1yD4bHmnm9R4g\")",
+      "Bash(curl -s -u \"rzp_live_S64ltOwEHSClyi:KJ7LWMhm3ixV45BEUZJi5Ewt\" https://api.razorpay.com/v1/payments?count=1)",
+      "Bash(node --env-file=.env.local -e ' *)",
+      "Bash(curl -s http://127.0.0.1:5000/api/agents/task/task_test_1777186719619)",
+      "Bash(curl -s http://127.0.0.1:5000/api/agents/task/task_demo_1777194813569)",
+      "Bash(curl -sv http://127.0.0.1:5000/api/health)",
+      "Bash(curl -sf http://127.0.0.1:5000/api/health)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/agents/consultation -H \"Content-Type: application/json\" -d '{\"taskId\":\"task_demo_1777194813569\",\"topic\":\"How a 5-person AI agency in India reaches 1 crore ARR in 12 months\",\"customerName\":\"Demo\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/api/payments/crypto/create-invoice -H \"Content-Type: application/json\" -d '{\"tierId\":\"matrix-consultation\",\"customerEmail\":\"smoke@test.com\"}')",
+      "Bash(git init *)",
+      "Bash(git check-ignore *)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add .)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"Initial: Autonomix with crypto checkout + Gemini autoposter + Coolify-ready Dockerfile\")"
+    ]
+  }
+}
