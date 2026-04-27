@@ -18,7 +18,9 @@ import fs from 'fs';
 import { initDatabase } from './db/init.js';
 import paymentRoutes from './routes/payments.js';
 import cryptoPaymentRoutes from './routes/payments-crypto.js';
-import marketingRoutes from './routes/marketing.js';
+import marketingRoutes, { publicStatsHandler as marketingPublicStats } from './routes/marketing.js';
+import previewRoutes from './routes/preview.js';
+import leadRoutes from './routes/leads.js';
 import { start as startAutoposter } from './services/autoposter.js';
 import { ensureMarketingTables } from './services/marketing.js';
 import agentRoutes from './routes/agents.js';
@@ -111,7 +113,13 @@ app.use('/api/payments/verify', paymentLimiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/payments/crypto', cryptoPaymentRoutes);
+// Public marketing stats (no auth) — mount BEFORE the admin-protected router
+app.get('/api/marketing/public-stats', marketingPublicStats);
 app.use('/api/marketing', requireAdmin, marketingRoutes);
+
+// Public preview + lead capture
+app.use('/api/preview', previewRoutes);
+app.use('/api/leads', leadRoutes);
 app.use('/api/agents', agentRoutes);
 
 // Admin-protected routes

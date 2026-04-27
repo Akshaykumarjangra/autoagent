@@ -71,6 +71,19 @@ export async function getCryptoStatus(orderId: string) {
   return apiFetch(`/payments/crypto/status/${orderId}`);
 }
 
+// ─── Free preview + lead capture ───────────
+export async function getFreePreview(topic: string) {
+  return apiFetch('/preview', { method: 'POST', body: JSON.stringify({ topic }) });
+}
+
+export async function captureLead(email: string, source: string, topic?: string) {
+  return apiFetch('/leads', { method: 'POST', body: JSON.stringify({ email, source, topic }) });
+}
+
+export async function getMarketingPublicStats() {
+  return apiFetch('/marketing/public-stats');
+}
+
 // ─── Agent APIs ────────────────────────────
 export async function submitConsultation(taskId: string, topic: string, details: string, customerName: string) {
   return apiFetch('/agents/consultation', {

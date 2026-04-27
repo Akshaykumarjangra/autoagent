@@ -86,6 +86,25 @@ export function initDatabase() {
     CREATE INDEX IF NOT EXISTS idx_chunks_document ON document_chunks(document_id);
     CREATE INDEX IF NOT EXISTS idx_analytics_type ON analytics_events(event_type);
     CREATE INDEX IF NOT EXISTS idx_analytics_created ON analytics_events(created_at);
+
+    CREATE TABLE IF NOT EXISTS leads (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT NOT NULL,
+      source TEXT,
+      topic TEXT,
+      ip_address TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
+    CREATE INDEX IF NOT EXISTS idx_leads_created ON leads(created_at);
+
+    CREATE TABLE IF NOT EXISTS preview_uses (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ip_address TEXT,
+      topic TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+    CREATE INDEX IF NOT EXISTS idx_preview_ip_created ON preview_uses(ip_address, created_at);
   `);
 
   console.log('[DB] Database initialized at', DB_PATH);

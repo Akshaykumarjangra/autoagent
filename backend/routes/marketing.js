@@ -2,11 +2,17 @@
  * Admin marketing routes — generate tweet drafts, list queue, post next, verify X.
  */
 import { Router } from 'express';
-import { generateTweetBatch, enqueueTweets, listQueue, ensureMarketingTables } from '../services/marketing.js';
+import { generateTweetBatch, enqueueTweets, listQueue, ensureMarketingTables, getPublicStats } from '../services/marketing.js';
 import { tickOnce, start as startAutoposter, stop as stopAutoposter } from '../services/autoposter.js';
 import { verifyCredentials, isConfigured } from '../services/x.js';
 
 const router = Router();
+
+// Public stats (mounted separately below in server.js without auth)
+export const publicStatsHandler = (req, res) => {
+  try { res.json(getPublicStats()); }
+  catch (e) { res.status(500).json({ error: e.message }); }
+};
 
 router.get('/status', async (req, res) => {
   ensureMarketingTables();

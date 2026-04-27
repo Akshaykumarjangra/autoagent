@@ -16,7 +16,18 @@
       "Bash(git init *)",
       "Bash(git check-ignore *)",
       "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add .)",
-      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"Initial: Autonomix with crypto checkout + Gemini autoposter + Coolify-ready Dockerfile\")"
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"Initial: Autonomix with crypto checkout + Gemini autoposter + Coolify-ready Dockerfile\")",
+      "Bash(git remote *)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add Dockerfile)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"fix\\(docker\\): use npm install instead of npm ci \\(repo uses workspaces, no per-package lockfile\\)\")",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add backend/server.js Dockerfile)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"fix: Express 5 SPA catch-all + node-based healthcheck\")",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add backend/server.js)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"fix\\(prod\\): disable CSP — frontend uses Tailwind/Razorpay/Fonts CDNs that strict CSP was blocking\")",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add frontend/components/TerminalLog.tsx)",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"fix: remove fake Razorpay transactions + fake firings from terminal log \\(was hurting trust/conversion\\)\")",
+      "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add -A)",
+      "Bash(git -c user.email=dev@autonomix.local -c 'user.name=Autonomix Dev' commit -m 'feat: free preview API + lead capture + public marketing stats + OG meta tags *)"
     ]
   }
 }

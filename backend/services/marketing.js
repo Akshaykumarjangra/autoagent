@@ -100,6 +100,22 @@ export function markFailed(id, error) {
   db.close();
 }
 
+export function getPublicStats() {
+  ensureMarketingTables();
+  const db = getDb();
+  const today = db.prepare(`SELECT COUNT(*) as c FROM marketing_queue WHERE status='posted' AND posted_at > datetime('now', '-1 day')`).get();
+  const total = db.prepare(`SELECT COUNT(*) as c FROM marketing_queue WHERE status='posted'`).get();
+  const queued = db.prepare(`SELECT COUNT(*) as c FROM marketing_queue WHERE status='pending'`).get();
+  const lastPost = db.prepare(`SELECT text, posted_at FROM marketing_queue WHERE status='posted' ORDER BY id DESC LIMIT 1`).get();
+  db.close();
+  return {
+    postedToday: today.c,
+    postedTotal: total.c,
+    queued: queued.c,
+    lastPost: lastPost || null,
+  };
+}
+
 export function listQueue(limit = 50) {
   ensureMarketingTables();
   const db = getDb();

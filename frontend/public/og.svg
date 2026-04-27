@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a0f"/>
+      <stop offset="1" stop-color="#12121a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00f0ff"/>
+      <stop offset="1" stop-color="#39ff14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#1a1a24" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="530" x2="1200" y2="530"/>
+  </g>
+  <text x="80" y="80" fill="#00f0ff" font-family="monospace" font-size="22" letter-spacing="6">AUTONOMIX // GLOBAL SWARM</text>
+  <text x="80" y="250" fill="#e2e8f0" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="80">McKinsey-grade</text>
+  <text x="80" y="340" fill="#e2e8f0" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="80">AI strategy reports</text>
+  <text x="80" y="430" fill="url(#accent)" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="96">for $1</text>
+  <text x="80" y="580" fill="#94a3b8" font-family="monospace" font-size="22">app.zeroai.org.in &#8594; Pay in any crypto &#8594; Report in 30s</text>
+  <g transform="translate(960, 250)">
+    <circle r="120" fill="#0a0a0f" stroke="#00f0ff" stroke-width="3"/>
+    <text x="0" y="-10" text-anchor="middle" fill="#00f0ff" font-family="monospace" font-size="20">ORACLE-7</text>
+    <text x="0" y="30" text-anchor="middle" fill="#39ff14" font-family="monospace" font-weight="700" font-size="40">$1</text>
+    <text x="0" y="60" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14">FULL REPORT</text>
+  </g>
+</svg>
