@@ -27,7 +27,8 @@
       "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add frontend/components/TerminalLog.tsx)",
       "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" commit -m \"fix: remove fake Razorpay transactions + fake firings from terminal log \\(was hurting trust/conversion\\)\")",
       "Bash(git -c user.email=\"dev@autonomix.local\" -c user.name=\"Autonomix Dev\" add -A)",
-      "Bash(git -c user.email=dev@autonomix.local -c 'user.name=Autonomix Dev' commit -m 'feat: free preview API + lead capture + public marketing stats + OG meta tags *)"
+      "Bash(git -c user.email=dev@autonomix.local -c 'user.name=Autonomix Dev' commit -m 'feat: free preview API + lead capture + public marketing stats + OG meta tags *)",
+      "Bash(git -c user.email=dev@autonomix.local -c 'user.name=Autonomix Dev' commit -m 'feat\\(ui\\): free preview modal + email capture + real X stats counter *)"
     ]
   }
 }

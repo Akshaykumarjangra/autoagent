@@ -4,6 +4,7 @@ import { createOrder, verifyPayment, getPaymentConfig, trackEvent, createCryptoI
 import { ConsultationForm } from './PostPayment/ConsultationForm';
 import { WebsiteForm } from './PostPayment/WebsiteForm';
 import { ChatPortal } from './PostPayment/ChatPortal';
+import { PreviewModal } from './PreviewModal';
 
 const TIERS = [
   {
@@ -69,6 +70,7 @@ export const HirePortal: React.FC = () => {
     tierName: string;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     getPaymentConfig()
@@ -186,6 +188,16 @@ export const HirePortal: React.FC = () => {
   // ─── Service Tiers Grid ───────────────────
   return (
     <div className="space-y-6">
+      {showPreview && (
+        <PreviewModal
+          onClose={() => setShowPreview(false)}
+          onUpgrade={() => {
+            setShowPreview(false);
+            const matrix = TIERS.find(t => t.id === 'matrix-consultation');
+            if (matrix) handleCryptoPayment(matrix);
+          }}
+        />
+      )}
       <div className="bg-cyber-900/50 border border-cyber-accent/30 p-5 rounded-lg flex flex-col md:flex-row items-center gap-4">
         <div className="flex-1">
           <h3 className="text-cyber-accent font-bold flex items-center gap-2 mb-2">
@@ -270,6 +282,14 @@ export const HirePortal: React.FC = () => {
                 <>₿ Pay with Crypto</>
               )}
             </button>
+            {tier.agentType === 'consultation' && tier.id === 'matrix-consultation' && (
+              <button
+                onClick={() => setShowPreview(true)}
+                className="mt-2 w-full py-2 text-cyber-success/80 hover:text-cyber-success text-xs font-mono underline underline-offset-4 decoration-cyber-success/40 hover:decoration-cyber-success transition"
+              >
+                ⚡ Try a free 200-word preview first
+              </button>
+            )}
           </div>
         ))}
       </div>

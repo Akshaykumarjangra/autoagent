@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AgentLog } from '../types';
 import { Icon } from './Icons';
+import { getMarketingPublicStats } from '../api';
+
+interface PublicStats {
+  postedToday: number;
+  postedTotal: number;
+  queued: number;
+  lastPost: { text: string; posted_at: string } | null;
+}
 
 const ACTIONS = [
   "SENTINEL-0 health probe → all green",
@@ -23,7 +31,16 @@ const AGENTS = [
 
 export const TerminalLog: React.FC = () => {
   const [logs, setLogs] = useState<AgentLog[]>([]);
+  const [stats, setStats] = useState<PublicStats | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Poll real public stats every 30s
+  useEffect(() => {
+    const load = () => getMarketingPublicStats().then(setStats).catch(() => {});
+    load();
+    const id = setInterval(load, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     // Status-only heartbeats (no fake transactions or fake revenue).
@@ -74,6 +91,15 @@ export const TerminalLog: React.FC = () => {
         </div>
         <span className="animate-pulse">● LIVE</span>
       </div>
+      {stats && (
+        <div className="flex items-center gap-3 text-[10px] text-gray-500 font-mono mb-2 pb-2 border-b border-cyber-700/50">
+          <span>X posts today: <span className="text-cyber-success font-bold">{stats.postedToday}</span></span>
+          <span className="text-gray-700">|</span>
+          <span>Total: <span className="text-gray-300">{stats.postedTotal}</span></span>
+          <span className="text-gray-700">|</span>
+          <span>Queued: <span className="text-purple-400">{stats.queued}</span></span>
+        </div>
+      )}
       <div className="flex-1 overflow-y-auto space-y-1 pr-2">
         {logs.map((log) => (
           <div key={log.id} className="flex gap-3 items-start">
